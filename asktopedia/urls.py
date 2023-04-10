@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home),
     path('user/',include('user.urls')),
-    path('ask/',include('ask.urls'))
+    path('ask/',include('ask.urls')),
 ]
 if settings.DEBUG:
     urlpatterns  += static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)

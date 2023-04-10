@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'ask',
     'user',
     'crispy_forms',
-    'crispy_bootstrap4'
+    'crispy_bootstrap4',
+     
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Auth settings
 AUTH_USER_MODEL = 'user.User'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Default primary key field type

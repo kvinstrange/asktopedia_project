@@ -59,17 +59,6 @@ class UserLoginView(LoginView):
             
 
 
-class AdminDashboardView(ListView):            
-    template_name = 'user/admin_dashboard.html'
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-        
-    def get_queryset(self):
-        return super().get_queryset()
-
-
-
 
 class UserDashBoardView(ListView):
     # model = User
@@ -77,7 +66,7 @@ class UserDashBoardView(ListView):
     
     def get(self, request, *args, **kwargs):
         question = Question.objects.all().values()
-        return render(request, 'user/admin_dashboard.html',{
+        return render(request, 'user/user_dashboard.html',{
             'questions':question,
         })
     
@@ -85,4 +74,14 @@ class UserDashBoardView(ListView):
         return super().get_queryset()
     
    
-    
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user_list.html'
+    context_object_name = 'user_list'
+
+
+class UserProfileView(ListView):
+    model = User
+    template_name = 'user_profile.html'
+    context_object_name = 'user_profile'

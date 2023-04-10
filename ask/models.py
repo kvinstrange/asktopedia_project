@@ -6,19 +6,23 @@ from django.conf import settings
 # Create your models here.
 
 class TechnologyLabel(models.Model):
-    label = models.CharField(max_length=25)
+    labeltitle = models.CharField(max_length=25,null=True)
+    label = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'technology_label'
+
+    def __str__(self):
+        return self.labeltitle
 
 
         
 class Question(models.Model):
     title = models.CharField(max_length=250)
     description = models.CharField(max_length=1000)
-    status = models.IntegerField()
+    status = models.IntegerField(default=0)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-
+    tag = models.CharField(max_length=100,null=True)
     class Meta:
         db_table = 'question'
 
@@ -28,16 +32,19 @@ class Question(models.Model):
 
 class Answers(models.Model):
     answer = models.CharField(max_length=1000)
-    user = models.ForeignKey(User,on_delete=models.CASCADE) 
-    question = models.ForeignKey(Question,on_delete=models.CASCADE)
-    likeCount = models.IntegerField()
-    dislikeCount = models.IntegerField()
-    markAsSolution = models.IntegerField()
-    docUrl = models.CharField(max_length=250)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True) 
+    question = models.ForeignKey(Question,on_delete=models.CASCADE,null=True)
+    likeCount = models.IntegerField(default=0,null=True)
+    dislikeCount = models.IntegerField(default=0,null=True)
+    markAsSolution = models.IntegerField(default=0,null=True)
+    docUrl = models.FileField(upload_to='upload/',null=True,blank=True)
 
     class Meta:
         db_table = 'answers'
 
+    
+    def __str__(self):
+        return self.answer
     
 
 # class Meetup(models.Model):
@@ -64,10 +71,13 @@ class Answers(models.Model):
 class Badges(models.Model):
     badgetitle = models.CharField(max_length=30)
     description = models.CharField(max_length=300)
-    rank = models.IntegerField()
+    rank = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'badges'
+
+    def __str__(self):
+        return self.badgetitle
 
 
 class User_Badges(models.Model):

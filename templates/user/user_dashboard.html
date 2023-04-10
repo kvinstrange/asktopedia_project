@@ -1,98 +1,117 @@
-{% extends './Base.html' %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+{% extends './base.html' %}
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{% static '/assets/vendor/fonts/boxicons.css' %}" />
+{% block content %}
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{% static '/assets/vendor/css/core.css'%}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{% static '/assets/vendor/css/theme-default.css'%}" class="template-customizer-theme-css" />
 
-    <link rel="stylesheet" href="{% static '/assets/vendor/css/demo.css'%}" />
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{% static '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'%}" />
 
-    <link rel="stylesheet" href="{% static '/assets/vendor/libs/apex-charts/apex-charts.css'%}" />
 
-    <!-- Page CSS -->
-  </head>
 
-  <body>
-    {% block content %}
-    <div class="card">
-      <h5 class="card-header">Questions</h5>
-      <h5 class="card-header">
-        <a href="{% url 'create_question' %}" class="btn btn-primary">Ask</a>
-      </h5>
-      <div class="table-responsive text-nowrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Question</th>
-              <th>DESCRIPTION</th>
-              <!-- <th>Technology</th>
-              <th>Status</th>
-              <th>Actions</th> -->
-            </tr>
-          </thead>
-          <tbody class="table-border-bottom-0">
-            {% for question in questions %}
-            <tr>
-              <td>
-                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                <strong>{{question.title}}</strong>
-              </td>
-              <td>
-                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                <strong>{{question.description}}</strong>
-              </td>
-              <td>
-                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                <strong>{{question.status}}</strong>
-              </td>
-              <td>
-                <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                <strong>{{question.user}}</strong>
-              </td>
-              <!-- <td><span class="badge bg-label-primary me-1">Active</span></td> -->
-              <td>
-                <div class="dropdown">
-                  <a class="dropdown-item" href="{% url 'update_question' %}"
-                    ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                  >
-                  <a class="dropdown-item" href="{% url 'delete_question' %}">
-                     <i class="bx bx-trash me-1"></i> 
-                     Delete
-                  </a>
-                </div>
-              </td>
-            </tr>
-
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    {% endblock content %} 
-    <!-- <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
+      <!-- partial -->
+      <div class="main-panel">
         <div class="content-wrapper">
-          <div class="container-xxl flex-grow-1 container-p-y">
-            <h1>ok</h1>
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">All Questions</h3>
+
+                  <style>
+                     @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
+                  </style>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                  <a href="{% url 'ask_question' %}" class="btn btn-primary">Ask Question</a>
+
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
+
+
+
+
+
+          
+
+
+          <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="table-responsive ">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Question-title</th>
+                        <th>Description</th>
+                        <th>Actions</th> 
+                        <!-- <th>Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {% for question in questions %}
+                      <tr>
+                        <td>
+                      <i class="fab fa-angular fa-lg text-danger me-3"></i>
+
+                          {{question.title}}
+                        </td>
+                        <td>
+                          
+                          <a href="{% url 'detail_question' question.id %}">{{question.description}}</a>
+                          
+                        </td>
+                        
+                        <td>
+                          <a class="badge badge-success" href="{% url 'answer_question' question.id %}"><i class="bx bx-edit-alt me-1"></i> Answer question</a>
+                          <!-- <a class="badge badge-link" href="{% url 'detail_question' question.id %}"><i class="btn btn-link"></i> Details</a> -->
+                     
+                        </td>
+                        <!-- <td>
+                          {% if question.status == 0 %}
+                          Active
+                          {% else %} Not Active
+                          {% endif %}
+                      </td> -->
+                      </tr>
+                     
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- content-wrapper ends -->
+        
       </div>
-    </div> -->
-  
-  </body>
-</html>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+
+
+
+
+    {% endblock %}

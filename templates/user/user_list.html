@@ -1,0 +1,115 @@
+{% extends './base.html' %}
+{% block title %} Asktopedia Users {% endblock %}
+
+
+{% block content %}
+
+
+   <!-- partial -->
+   <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-12 grid-margin">
+          <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+              <h3 class="font-weight-bold">Users</h3>
+
+              <style>
+                 @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
+              </style>
+            </div>
+            <div class="col-12 col-xl-4">
+             <div class="justify-content-end d-flex">
+              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+              <a href="{% url 'ask_question' %}" class="btn btn-primary">Ask Question</a>
+
+              </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              
+              <div class="table-responsive">
+                <table class="table table-striped" id="css-serial">
+                  <!-- <style>
+                    /* Automatic Serial Number Row */
+                    .css-serial {
+                    counter-reset: serial-number; /* Set the serial number counter to 0 */
+                    }
+                    .css-serial td:first-child:before {
+                    counter-increment: serial-number; /* Increment the serial number counter */
+                    content: counter(serial-number); /* Display the counter */
+                    }
+                    table, th, td {
+                      border: 1px solid black;
+                      border-collapse: collapse;
+                    }
+                    tr:nth-child(even) {
+                      background-color: #dddddd;
+                    }
+                  </style> -->
+                    <thead>
+                      <tr>
+                        <th>Sr. No.</th>
+                        <th>First Name</th> 
+                        <!-- <th>Last Name</th> -->
+                        <th style="width: 50%;">Email</th> 
+                        <th>Gender</th> 
+                        <th>Qualification</th> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in user_list %}
+                        <tr>
+                          <td>
+                            &nbsp;
+                          </td>
+                          <td>
+                            <!-- <a href="{% url 'user_profile' i.id %}"> -->
+                            {{i.username}}
+                          <!-- </a> -->
+                          </td> 
+                          <!-- <td>
+                            {{i.username}}
+                          </td> -->
+                          <!-- <td>
+                            {{i.lastname}}
+                          </td> -->
+                          <td>
+                            {{i.email}}
+                          </td>
+                          <td>
+                            {{i.gender}}
+                          </td>
+                          <td>
+                            {{i.qualification}}
+                          </td>
+                          {% endfor %}
+                    </tbody>
+                    
+                  </table>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
