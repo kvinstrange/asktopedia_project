@@ -65,12 +65,14 @@ class AdminDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
         
+    def get_queryset(self):
+        return super().get_queryset()
 
 
 
 
 class UserDashBoardView(ListView):
-    model = User
+    # model = User
     template_name = 'user/user_dashboard.html'
     
     def get(self, request, *args, **kwargs):
