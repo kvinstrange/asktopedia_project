@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import *
 from django.db import transaction
 
 
@@ -46,4 +46,9 @@ class UserRegisterForm(UserCreationForm):
 #         widgets={'username': forms.TextInput(attrs={'class': 'input', 'type':'text', 'placeholder':'UserName'}),
 #                 'password': forms.PasswordInput(attrs={'class': 'input', 'type':'password', 'placeholder':'Password'})}
 
+
+class ContactUsForm(forms.ModelForm):
+    class Meta(UserCreationForm.Meta):
+        model = ContactUs
+        fields = '__all__'
 

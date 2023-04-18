@@ -22,3 +22,13 @@ class User_Technology(models.Model):
 
     class Meta:
         db_table = 'user_technology'
+
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=25)
+    email = models.EmailField(max_length=50)
+    subject = models.CharField(max_length=30)
+    message = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'contactUs'

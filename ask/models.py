@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import User
 from django.conf import settings
+from django.core.exceptions import ValidationError
 # from models import *
 
 # Create your models here.
@@ -45,6 +46,12 @@ class Answers(models.Model):
     
     def __str__(self):
         return self.answer
+    
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    anslike = models.ForeignKey(Answers, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
     
 
 # class Meetup(models.Model):

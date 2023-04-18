@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from telnetlib import LOGOUT
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .models import User
-from .forms import AdminRegisterForm,UserRegisterForm
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import login
+from .models import *
+from .forms import *
+from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth import login,logout
 from django import forms
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView,TemplateView
 from ask.models import Question
 
 # Create your views here.
@@ -52,11 +54,21 @@ class UserLoginView(LoginView):
 
     def get_redirect_url(self):
         if self.request.user.is_authenticated:    
-            if self.request.user.is_admin:
-                return '/user/admin/dashboard'
-            else:
+            # if self.request.user.is_admin:
+            #     return '/user/admin/dashboard'
+            # else:
                 return '/user/user/dashboard'
             
+
+            
+
+class UserLogoutView(TemplateView):
+    template_name = 'user/logout.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse_lazy('login'))
+    
 
 
 
@@ -85,3 +97,14 @@ class UserProfileView(ListView):
     model = User
     template_name = 'user_profile.html'
     context_object_name = 'user_profile'
+
+
+class ContactUsView(CreateView):
+    form_class = ContactUsForm
+    model = ContactUs
+    template_name = 'home.html'
+    success_url = ''
+    
+    
+    def form_valid(self, form):
+        return super().form_valid(form)

@@ -28420,8 +28420,8 @@ div.tagsinput span.tag a {
   display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
-  padding-left: -20px;
-  padding-right: -10px;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 60px;
 }
 
