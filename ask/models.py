@@ -88,9 +88,9 @@ class Badges(models.Model):
 
 
 class User_Badges(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    badge = models.ForeignKey(Badges,on_delete=models.CASCADE)
-    earnDate = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    badge = models.ForeignKey(Badges,on_delete=models.CASCADE,null=True)
+    earnDate = models.DateField(auto_now_add=True,null=True)
 
     class Meta:
         db_table = 'user_badges'

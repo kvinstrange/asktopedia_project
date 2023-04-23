@@ -1,3 +1,103 @@
+<!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
+
+<body >
+  <header class="header">
+    <a href="#" class="logo">AskToPedia</a>
+    <nav class="nav-items">
+      <a href="http://127.0.0.1:8000/user/login">Login</a>
+      <a href="http://127.0.0.1:8000/user/adminregister/">Admin_register</a>
+      <a href="http://127.0.0.1:8000/user/userregister/">User_register</a>
+      <a href="#">Home</a>
+      <a href="">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>AskToPedia</h1>
+      <p>Every developer has a tab open to AskToPedia.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="achievements">
+      <div class="work">
+        <i class="fas fa-atom"></i>
+        <p class="work-heading">Projects</p>
+        <p class="work-text">I have worked on many projects and I am very proud of them. I am a very good developer and I am always looking for new projects.</p>
+      </div>
+      <div class="work">
+        <i class="fas fa-skiing"></i>
+        <p class="work-heading">Skills</p>
+        <p class="work-text">I have a lot of skills and I am very good at them. I am very good at programming and I am always looking for new skills.</p>
+      </div>
+      <div class="work">
+        <i class="fas fa-ethernet"></i>
+        <p class="work-heading">Network</p>
+        <p class="work-text">I have a lot of network skills and I am very good at them. I am very good at networking and I am always looking for new network skills.</p>
+      </div>
+    </div>
+    <div class="about-me">
+      <div class="about-me-text">
+        <h2>About Us</h2>
+        <p>Asktopedia is the web app in which all technical users can ask their doubts with other registered developers. Developers can also communicate and arrange meetups between them. Developers who post answers can also upload relative material and docs for further references and also provide support by sessions and online meetings. Our app gives various badges and appreciation rewards to developers once they earn
+          certain badges.</p>
+      </div>
+      <img src="{% static 'IMG_1135.jpg' %}" alt="me">
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="copy">&copy; 2023 Developer</div>
+    <div class="bottom-links">
+      <div class="links">
+        <span>More Info</span>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="links">
+        <span>Social Links</span>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/kvin_strange/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +110,11 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- Icons link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- Favicons -->
-  <link href="{% static 'home_page/assets/img/favicon.png' %}" rel="icon">
+  <link href="" rel="icon">
   <link href="{% static 'home_page/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -54,17 +157,9 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/user/login">Login</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-             
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/user/login">Login</a></li>
+                
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -86,7 +181,7 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Asktopedia</span></h2>
-                <p class="animate__animated animate__fadeInUp">Where developers can ask their doubts, learn and share knowledge.</p>
+                <p class="animate__animated animate__fadeInUp">Where developers can ask their doubts, and learn and share knowledge.</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
               </div>
             </div>
@@ -99,8 +194,9 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Don't be shy! JUST ASK!</h2>
-                <p class="animate__animated animate__fadeInUp">Every developer has a tab open to AskToPedia</p>
+                <p class="animate__animated animate__fadeInUp">Every developer has a tab open to Asktopedia</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
+                <a href="http://127.0.0.1:8000/user/user/dashboard" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
@@ -127,30 +223,18 @@
 
         <div class="section-title">
           <h2>About Us</h2>
-          <p>Asktopedia is the web app in which all technical users can ask their doubts with other registered developers. Developers who post answers can also upload relative material and docs for further references and also provide support by sessions and online meetings. Our app gives various badges and appreciation rewards to developers once they earn
+          <p>Asktopedia is the web app in which all technical users can ask their doubts with other registered developers. Developers who post answers can also upload relative material and documents for further references. Our app gives various badges and appreciation rewards to developers once they earn
             certain badges.</p>
         </div>
 
         <div class="row">
           <div class="col-lg-6">
-            <img src="{% static 'home_page/assets/img/about.jpg' %}" class="img-fluid" alt="">
+            <img src="{% static 'home_page/assets/img/hero-img.png' %}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            <img src="{% static 'home_page/assets/img/slider-img.png' %}" class="img-fluid" alt="">
+            <!-- <img src="{% static 'home_page/assets/img/group.png' %}" class="img-fluid" alt=""> -->
+            
           </div>
         </div>
 
@@ -164,50 +248,34 @@
 
         <div class="section-title">
           <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Asktopedia is an online platform that provides a variety of services for developers and programmers. Some of the key services provided by Asktopedia include:</p>
         </div>
 
         <div class="row">
           <div class="col-md-6">
+            <br><br><br>
             <div class="icon-box">
               <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4><a href="#">Q&A Community: </a></h4>
+              <p>Asktopedia is a Q&A community where developers and programmers can ask and answer technical questions related to software development, programming languages, tools, and frameworks.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
+            <img src="{% static 'home_page/assets/img/about.jpg' %}" class="img-fluid" alt="">
+
+
+          </div>
+        
+          <div class="col-md-6 mt-4 mt-md-0">
+            <img src="{% static 'home_page/assets/img/bg-showcase-2.jpg' %}" class="img-fluid" alt="">
+
+          </div>
+          <div class="col-md-6 mt-4 mt-md-0">
+            <br><br><br><br>
             <div class="icon-box">
               <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Nemo Enim</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Magni Dolore</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-calendar4-week"></i>
-              <h4><a href="#">Eiusmod Tempor</a></h4>
-              <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <h4><a href="#">Providing Badges:</a></h4>
+              <p> Users of Asktopedia can earn "badges"; for example, a person's answer is awarded 10 likes on a question or an answer to a question, can receive badges for their valued contributions, which represents a gamification of the traditional Q&A website. </p>
             </div>
           </div>
         </div>
@@ -221,9 +289,9 @@
       <div class="container">
 
         <div class="text-center">
-          <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn" href="#">Call To Action</a>
+          <h3>A community for developers</h3>
+          <p> Join today and let's get started.</p>
+          <a class="cta-btn" href="#">Get Started</a>
         </div>
 
       </div>
@@ -236,7 +304,7 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Got a problem! Feel free to contact us, we would <i class="fa fa-heart" style="color: rgb(0, 191, 255);"></i> to help you.</p>
         </div>
 
         <div class="row">
@@ -244,7 +312,7 @@
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
               <h3>Our Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>Ahemdabad, India</p>
             </div>
           </div>
 
@@ -252,7 +320,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p>contact@example.com</p>
+              <p>asktopediahelp@gmail.com</p>
             </div>
           </div>
 
@@ -260,7 +328,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+              <p>9327006369</p>
             </div>
           </div>
 
@@ -269,11 +337,16 @@
         <div class="row">
 
           <div class="col-lg-6 ">
-            <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+            <center>
+              <div class="col-sm-8 aos-init aos-animate" data-aos="fade-up" data-aos-offset="-500">
+                <img src="{% static 'home_page/assets/img/contact.jpg' %}" alt="contact" class="img-fluid">
+              </div>
+            </center>
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{% url 'contactUs' %}" method="post" role="form" >
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -289,11 +362,8 @@
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-info">Send Message</button></div>
             </form>
           </div>
 
@@ -312,20 +382,18 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>Alstar</h3>
-              <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>
+              <h3>Asktopedia</h3>
+              <p class="pb-3"><em></em></p>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                Ahemdabad, <br>
+                India<br><br>
+                <strong>Phone:</strong> 9327006369<br>
+                <strong>Email:</strong> asktopediahelp@gmail.com<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> 
               </div>
             </div>
           </div>
@@ -335,27 +403,27 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://127.0.0.1:8000/user/user/dashboard/">All questions</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Q&A Platform</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Providing Badges</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Code Repository</a></li>
+
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <h4>Subscribe</h4>
+            <p>
+              Enter your email and join with us to get all the updates of the Asktopedia website.            
+            </p>
             <form action="" method="post">
+              {% csrf_token %}
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
 

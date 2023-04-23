@@ -114,7 +114,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Favicons -->
-  <link href="{% static 'home_page/assets/img/favicon.png' %}" rel="icon">
+  <link href="" rel="icon">
   <link href="{% static 'home_page/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -196,7 +196,7 @@
                 <h2 class="animate__animated animate__fadeInDown">Don't be shy! JUST ASK!</h2>
                 <p class="animate__animated animate__fadeInUp">Every developer has a tab open to Asktopedia</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
-                <a href="http://127.0.0.1:8000/user/user/dashboard" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                <a href="{% url 'dashboard' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
@@ -320,7 +320,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p>asktopediahelp@gmail.com</p>
+              <p>kvania88@gmail.com</p>
             </div>
           </div>
 
@@ -345,7 +345,9 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{% url 'contactUs' %}" method="post" role="form" >
+              <!-- class="info-box  mb-4" -->
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -361,11 +363,8 @@
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-info">Send Message</button></div>
             </form>
           </div>
 
@@ -390,12 +389,12 @@
                 Ahemdabad, <br>
                 India<br><br>
                 <strong>Phone:</strong> 9327006369<br>
-                <strong>Email:</strong> asktopediahelp@gmail.com<br>
+                <strong>Email:</strong> kvania88@gmail.com<br>
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> 
+                <a href="https://twitter.com/kvin_vania" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/kevin.vania.31" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/kvin_strange/" class="instagram"><i class="bx bxl-instagram"></i></a> 
               </div>
             </div>
           </div>
@@ -424,7 +423,7 @@
             <p>
               Enter your email and join with us to get all the updates of the Asktopedia website.            
             </p>
-            <form action="" method="post">
+            <form action="{% url 'subscribe' %}" method="post">
               {% csrf_token %}
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>

@@ -16,5 +16,7 @@ urlpatterns = [
     path('technologylist/',TechnologyListView.as_view(),name='technology_list'),
     path('badgeslist/',BadgesListView.as_view(),name='badges_list'),
     path('likes/',views.like),
-    path('dislikes/',views.dislike)
+    path('dislikes/',views.dislike),
+    path('contactUs/',views.contactUs,name='contactUs'),
+    path('subscribe/',views.subscribe,name='subscribe'),
 ]

@@ -167,36 +167,12 @@
           </li> -->
 
           <li class="nav-item nav-profile dropdown">
-            <!-- <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown" aria-expanded="false"> -->
-              <!-- <img src="images/faces/face28.jpg" alt="profile"> -->
-              
-              <h6 style="height:5px; ;">
-                Welcome, {{user.get_username}} / 
-                <a href="{% url 'logout' %}">
-                  <!-- <i class="ti-power-off"></i> -->
-                  Logout
-                </a>
-              </h6>
-            <!-- </a> -->
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item" href="{% url 'logout' %}">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
+            <h6 style="height:5px; ;">Hello,&nbsp;</h6>
 
-          <!-- <li class="nav-item dropdown">
-            <a class="dropdown-item" href="{% url 'logout' %}">
-              <i class="ti-power-off"></i>
-              Logout
+            <a href="{% url 'login' %}">
+              <h6 style="height:5px; ;"> Sign in</h6>
             </a>
-          </li> -->
-
+          </li>
         </ul>
         <!-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>
@@ -293,15 +269,7 @@
             </a>
           </li>
 
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="" >
-              <i class="bi bi-people-fill"></i>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-              </svg>
-              <span class="menu-title"> &nbsp;&nbsp;&nbsp; Users</span>
-            </a>
-          </li> -->
+          
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'badges_list' %}" >
@@ -314,73 +282,177 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_profile' %}">
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Your Profile</span>
-              <!-- <i class="menu-arrow"></i> -->
+              <span class="menu-title">User</span>
+              <i class="menu-arrow"></i>
             </a>
-          </li>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'userregister' %}"> Register </a></li>
+              </ul>
+            </div>
+          </li> -->
+
         </ul>
       </nav>
 
 
 
-      {% block content %}
-
-
-      {% endblock %}
 
 
 
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">All Questions</h3>
+
+                  <style>
+                     @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
+                  </style>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                  <a href="{% url 'ask_question' %}" class="btn btn-primary">Ask Question</a>
+
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
 
 
 
 
 
-      
-    </div>
-    <!-- container-scroller -->
-  
-  
-  
-    <!-- partial:partials/_footer.html -->
-    <footer class="footer">
-      <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. </span>
+          
+
+
+          <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="table-responsive ">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Question-title</th>
+                        <th>Description</th>
+                        <th>Actions</th> 
+                        <!-- <th>Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {% for question in questions %}
+                      <tr>
+                        <td>
+                      <i class="fab fa-angular fa-lg text-danger me-3"></i>
+
+                          {{question.title}}
+                        </td>
+                        <td>
+                          
+                          <a href="{% url 'detail_question' question.id %}">{{question.description}}</a>
+                          
+                        </td>
+                        
+                        <td>
+                          <a class="badge badge-success" href="{% url 'answer_question' question.id %}"><i class="bx bx-edit-alt me-1"></i> Answer question</a>
+                          <!-- <a class="badge badge-link" href="{% url 'detail_question' question.id %}"><i class="btn btn-link"></i> Details</a> -->
+                     
+                        </td>
+                        <!-- <td>
+                          {% if question.status == 0 %}
+                          Active
+                          {% else %} Not Active
+                          {% endif %}
+                      </td> -->
+                      </tr>
+                     
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- content-wrapper ends -->
+        
       </div>
-    </footer>
-    <!-- partial -->
-  
-  </div>
-  
-    <!-- icons  -->
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
 
-  
-  
-    <!-- plugins:js -->
-    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
-    <script src="{% static 'assets/vendors/datatables.net/jquery.dataTables.js' %}"></script>
-    <script src="{% static 'assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
-    <script src="{% static 'assets/js/dataTables.select.min.js' %}"></script>
-  
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{% static 'assets/js/off-canvas.js' %}"></script>
-    <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
-    <script src="{% static 'assets/js/template.js' %}"></script>
-    <script src="{% static 'assets/js/settings.js' %}"></script>
-    <script src="{% static 'assets/js/todolist.js' %}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{% static 'assets/js/dashboard.js' %}"></script>
-    <script src="{% static 'assets/js/Chart.roundedBarCharts.js' %}"></script>
-    <!-- End custom js for this page-->
-  </body>
-  
-  </html>
+
+
+
+       
+  </div>
+  <!-- container-scroller -->
+
+
+
+  <!-- partial:partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. </span>
+    </div>
+  </footer>
+  <!-- partial -->
+
+</div>
+
+  <!-- icons  -->
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+
+
+
+  <!-- plugins:js -->
+  <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'assets/js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+  <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'assets/js/template.js' %}"></script>
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+  <script src="{% static 'assets/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'assets/js/dashboard.js' %}"></script>
+  <script src="{% static 'assets/js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

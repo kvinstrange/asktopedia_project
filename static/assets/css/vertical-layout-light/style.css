@@ -28465,7 +28465,7 @@ div.tagsinput span.tag a {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 60px);
-  background: #1d226c;
+  background: #1e246f;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   padding: 0;
@@ -28522,7 +28522,7 @@ div.tagsinput span.tag a {
   font-size: 1rem;
   line-height: 1;
   margin-right: 1rem;
-  color: #fff;
+  color: #ffffff;
 }
 
 .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
@@ -30590,31 +30590,6 @@ div.tagsinput span.tag a {
   #settings-trigger {
     display: none;
   }
-}
-
-
-
-body{
-  margin: 40px;
-}
-
-button{
-  cursor: pointer;
-  outline: 0;
-  color: #AAA;
-
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.green{
-  color: green;
-}
-
-.red{
-  color: red;
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
