@@ -8,8 +8,9 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login,logout
 from django import forms
 from django.views import View
-from django.views.generic import ListView,TemplateView,DetailView
+from django.views.generic import ListView,TemplateView,DetailView,UpdateView
 from ask.models import Question
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -48,6 +49,7 @@ class UserLogoutView(TemplateView):
         return redirect(reverse_lazy('dashboard'))
     
 
+
 class DashBoardView(ListView):
     # model = User
     template_name = 'user/dashboard.html'
@@ -60,6 +62,7 @@ class DashBoardView(ListView):
     
     def get_queryset(self):
         return super().get_queryset()
+
 
 
 class UserDashBoardView(ListView):
@@ -77,20 +80,26 @@ class UserDashBoardView(ListView):
     
   
 
-class UserProfileView(TemplateView):
+class UserProfileView(DetailView):
     model = User
     template_name = 'user/user_profile.html'
     context_object_name = 'user_profile'
 
-    # def get_object(self):
-    #     return get_object_or_404(User, pk=self.request.session['user_id'])
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'user/user_update.html'
+    success_url = 'user/userprofile/'
+
+
 
 class ContactUsView(CreateView):
     form_class = ContactUsForm
     model = ContactUs
     template_name = 'home.html'
     success_url = ''
-    
     
     def form_valid(self, form):
         return super().form_valid(form)

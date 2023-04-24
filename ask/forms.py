@@ -3,11 +3,13 @@ from django import forms
 from .models import *
 from user.models import User
 from django.db import transaction
+from django.forms import HiddenInput
 
 class AskQuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = '__all__'
+        widgets = {'status' : HiddenInput()}
 
     # @transaction.atomic
     # def save(self):

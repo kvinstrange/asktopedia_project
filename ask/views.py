@@ -19,6 +19,8 @@ from django.contrib import messages
 from django import template
 from datetime import datetime
 from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 
@@ -142,6 +144,7 @@ class TechnologyListView(ListView):
     template_name = 'ask/technology_list.html'
     context_object_name = 'technology_list'
 
+
 @method_decorator(login_required(login_url='/user/login'), name='dispatch')
 class BadgesListView(ListView):
     model = Badges
@@ -221,6 +224,7 @@ def dislike(request):
     updatedCount = prvlikecount+1
     new_like.dislikeCount =updatedCount
     new_like.save()
+
     return redirect('detail_question',qid)
     
   

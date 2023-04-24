@@ -43,6 +43,19 @@ class UserRegisterForm(UserCreationForm):
     
 
 
+class UserProfileForm(forms.ModelForm):
+    username = forms.CharField(
+        label="Username",
+        strip=False,
+        widget=forms.TextInput,
+    )
+    class Meta():
+        model = User
+        fields = ('username','first_name','last_name','email','gender','qualification')
+
+
+
+
 class ContactUsForm(forms.ModelForm):
     class Meta(UserCreationForm.Meta):
         model = ContactUs
