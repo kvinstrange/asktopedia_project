@@ -38,7 +38,7 @@ class Answers(models.Model):
     likeCount = models.IntegerField(default=0,null=True)
     dislikeCount = models.IntegerField(default=0,null=True)
     markAsSolution = models.IntegerField(default=0,null=True)
-    docUrl = models.FileField(upload_to='upload/',null=True,blank=True)
+    document = models.FileField(upload_to='upload/',null=True,blank=True)
 
     class Meta:
         db_table = 'answers'
@@ -48,10 +48,12 @@ class Answers(models.Model):
         return self.answer
     
 
-class Like(models.Model):
+class User_Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    anslike = models.ForeignKey(Answers, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
+    answer = models.ForeignKey(Answers, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.answer)
     
 
 # class Meetup(models.Model):
@@ -89,22 +91,26 @@ class Badges(models.Model):
 
 class User_Badges(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    badge = models.ForeignKey(Badges,on_delete=models.CASCADE,null=True)
+    badge = models.ForeignKey('ask.Badges',on_delete=models.CASCADE,null=True, related_name='user_badges')
     earnDate = models.DateField(auto_now_add=True,null=True)
 
     class Meta:
         db_table = 'user_badges'
 
+    def __str__(self):
+        return str(self.badge)
+ 
 
-class Tutorials(models.Model):
-    technologylabel = models.ForeignKey(TechnologyLabel,on_delete=models.CASCADE)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    url = models.CharField(max_length=250)
-    isApproved = models.IntegerField()
-    rejectReason = models.CharField(max_length=200)
 
-    class Meta:
-        db_table = 'tutorials'
+# class Tutorials(models.Model):
+#     technologylabel = models.ForeignKey(TechnologyLabel,on_delete=models.CASCADE)
+#     user = models.ForeignKey(User,on_delete=models.CASCADE)
+#     url = models.CharField(max_length=250)
+#     isApproved = models.IntegerField()
+#     rejectReason = models.CharField(max_length=200)
+
+#     class Meta:
+#         db_table = 'tutorials'
 
 
 

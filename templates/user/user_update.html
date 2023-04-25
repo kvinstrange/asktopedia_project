@@ -45,14 +45,26 @@
                     <div class="user-profile">
                         <div class="user-avatar">
                             <img style="height: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                            
                         </div>
                         <br>
-                        <h5 class="user-name">{{user.username}}</h5>
+                        <h5 class="user-name">
+                          <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                          {{user.get_username}}
+                        </h5>
                         <h6 class="user-email">{{user.email}}</h6>
                     </div>
+                    <br>
+                    <h5>Badges</h5>
+                    {% for badge in badges %}
+                      <p class="text-warning">{{ badge.badgetitle }}</p>
+                    {% empty %}
+                      <p>No badges earned yet.</p>
+                    {% endfor %}
                     <div class="about">
-                        <!-- <h5>About</h5>
-                        <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p> -->
+                        <h5>About</h5>
+                        <p>{{user.bio}}</p>
                     </div>
                 </div>
             </div>
@@ -68,6 +80,8 @@
                 
                 <div class="row gutters">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                         <div class="form-group">
                             <!-- <label for="fullName">Full Name</label>
                             <input type="text" class="form-control" id="fullName" placeholder="Enter full name"> -->
@@ -109,12 +123,30 @@
                             {{form.qualification | as_crispy_field}}
                         </div>
                     </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <!-- <label for="website">Website URL</label>
+                            <input type="url" class="form-control" id="website" placeholder="Website url"> -->
+                            {{form.bio | as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                       
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="website">Profile Picture</label>
+                            <br>
+                            {{form.profilepic}}
+                        </div>
+                    </div> -->
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
                     <input type="submit" class="btn btn-info " value="Submit">
                   </div>
                 </div>
+            </form>
               </div>
             </div>
         </div>

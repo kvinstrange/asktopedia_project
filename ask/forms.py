@@ -10,6 +10,7 @@ class AskQuestionForm(forms.ModelForm):
         model = Question
         fields = '__all__'
         widgets = {'status' : HiddenInput()}
+        exclude = ('user',)
 
     # @transaction.atomic
     # def save(self):
@@ -22,6 +23,16 @@ class AskQuestionForm(forms.ModelForm):
 class QuestionAnswerForm(forms.ModelForm):
     class Meta:
         model = Answers
-        fields = ('answer','user','question','docUrl') 
+        fields = ('answer','user','question','document')
+        exclude = ('user',)
+        widgets = {
+            'question': forms.HiddenInput(),
+        }
 
+    def __init__(self, *args, **kwargs):
+        question_pk = kwargs.pop('question_pk', None)
+        super().__init__(*args, **kwargs)
+        if question_pk:
+            self.fields['question'].initial = question_pk
+        
  

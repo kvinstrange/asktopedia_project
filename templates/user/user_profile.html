@@ -46,14 +46,27 @@
                     <div class="user-profile">
                         <div class="user-avatar">
                             <img style="height: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                            
                         </div>
                         <br>
-                        <h5 class="user-name">{{user.get_username}}</h5>
+                        <h5 class="user-name">
+                          <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                          {{user.get_username}}
+                        </h5>
                         <h6 class="user-email">{{user.email}}</h6>
                     </div>
+                    <br>
+                    <h5>Badges</h5>
+                    {% for badge in badges %}
+                      <p class="text-warning">{{ badge.badgetitle }}</p>
+                    {% empty %}
+                      <p>No badges earned yet.</p>
+                      
+                    {% endfor %}
                     <div class="about">
-                        <!-- <h5>About</h5>
-                        <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p> -->
+                        <h5>About</h5>
+                        <p>{{user.bio}}</p>
                     </div>
                 </div>
             </div>
@@ -121,6 +134,7 @@
                     </div>
                   </div>
                   <hr>
+                  
                 <div class="row">
                   <div class="col-sm-12">
                     <a class="btn btn-info " href="{% url 'user_update' user.id %}">Edit</a>

@@ -13,10 +13,8 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Answer this question</h3>
-                  {% for q in question %}
-                  {{q.description}}
-                  {% endfor %}
+                  <h3 class="font-weight-bold">{{question.description}}</h3>
+                  
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
@@ -38,8 +36,7 @@
 
 
           <!-- Question Details -->
-          <!-- {% for q in question%}
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -48,7 +45,7 @@
                     <table class="table" >
                       <thead>
                         <tr>
-                          <h4>{{q.description}}</h4>
+                          <h4>{{question.description}}</h4>
                         </tr>
                       </thead>
                       <tbody>
@@ -59,7 +56,26 @@
                             <h5>Answer:</h5>
                             <h5>{{a.answer}}</h5>
                             <br>
+                            
                             <br> 
+                           
+                                 {% if user.is_authenticated %}
+                                    <a href='/ask/likes/?id={{a.id}}'><i class="fa fa-thumbs-up" style="font-size:22px"></i></a>
+                                  {% else %}
+                                    <a onclick="alert('In order to like the answer, you must be logged in!')" href='http://127.0.0.1:8000/user/login/'><i class="fa fa-thumbs-up" style="font-size:20px"></i></a>
+                                  {% endif %}
+                                  &nbsp;
+                                 {{a.likeCount}}
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% if user.is_authenticated %}
+                                    <a href='/ask/dislikes/?id={{a.id}}'><i class="fa fa-thumbs-down" style="font-size:22px"></i></a>
+                                  {% else %}
+                                    <a onclick="alert('In order to dislike the answer, you must be logged in!')" href='http://127.0.0.1:8000/user/login/'><i class="fa fa-thumbs-down" style="font-size:22px"></i></a>
+                                  {% endif %}
+                                  &nbsp;
+                                 {{a.dislikeCount}}
+
                           </td>
                         </tr>
                        <tr>
@@ -72,8 +88,10 @@
                 </div>
               </div>
             </div>
-          </div>
-          {% endfor %} -->
+          </div> -->
+
+
+
 
 
           <!-- Question Answer -->
@@ -89,43 +107,16 @@
                     <tbody>
                         <form method="POST">
                             {% csrf_token %}
-                            {{form.answer | as_crispy_field}}
-                            {{form.user | as_crispy_field}}
-                            {{form.question | as_crispy_field}}
-                            {{form.docUrl | as_crispy_field}}
-                            <!-- <input type="text" name="answer" id="answer">
-                            <br>
-                            <input type="text" name="user" id="user">
-                            <br>
-                            <input type="text" name="question" id="question">
-                            <br>
-                            <input type="number" name="likeCount" id="likeCount">
-                            <br>
-                            <input type="number" name="dislikeCount" id="dislikeCount">
-                            <br>
-                            <input type="number" name="markAsSolution" id="markAsSolution">
-                            <br>
-                            <input type="text" name="docUrl" id="docUrl"> -->
+                            {{form | crispy}}
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form> 
-
                     </tbody>
                   </table>
-                        <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-        <!-- <form method="POST">
-          {% csrf_token %}
-          {{form | crispy}}
-          <input type="submit" class="btn btn-primary" value="Send">
-       </form>  -->
-
 
 
 
@@ -155,12 +146,6 @@
        </form> -->
 
        
-
-
-
-
-
-
 
 
 

@@ -1,4 +1,3 @@
-from telnetlib import LOGOUT
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
@@ -11,6 +10,10 @@ from django.views import View
 from django.views.generic import ListView,TemplateView,DetailView,UpdateView
 from ask.models import Question
 from django.contrib.auth import get_user_model
+from ask.models import User_Badges, Badges
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordResetForm
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -71,13 +74,21 @@ class UserDashBoardView(ListView):
     
     def get(self, request, *args, **kwargs):
         question = Question.objects.all().values()
+        sort_by = self.request.GET.get('sort_by', 'title')
+        direction = self.request.GET.get('direction', 'asc')
+        print(".....",sort_by)
+        print(".....",direction)
+        if direction == 'asc':
+            question = question.order_by(sort_by)
+        elif direction == 'desc':
+            question = question.order_by(f'-{sort_by}')
         return render(request, 'user/user_dashboard.html',{
             'questions':question,
         })
     
     def get_queryset(self):
         return super().get_queryset()
-    
+  
   
 
 class UserProfileView(DetailView):
@@ -85,21 +96,27 @@ class UserProfileView(DetailView):
     template_name = 'user/user_profile.html'
     context_object_name = 'user_profile'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_badges = User_Badges.objects.filter(user=self.object)
+        badges = Badges.objects.filter(user_badges__in=user_badges).distinct()
+        context['badges'] = badges
+        return context
 
 
 class UserUpdateView(UpdateView):
     model = User
     form_class = UserProfileForm
     template_name = 'user/user_update.html'
-    success_url = 'user/userprofile/'
+    # success_url = 'user/userprofile/'
 
-
-
-class ContactUsView(CreateView):
-    form_class = ContactUsForm
-    model = ContactUs
-    template_name = 'home.html'
-    success_url = ''
+    def get_success_url(self):
+        return reverse_lazy('user_profile', kwargs={'pk': self.object.pk})
     
-    def form_valid(self, form):
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_badges = User_Badges.objects.filter(user=self.object)
+        badges = Badges.objects.filter(user_badges__in=user_badges).distinct()
+        context['badges'] = badges
+        return context
+

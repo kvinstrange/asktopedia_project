@@ -8,8 +8,12 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_user = models.BooleanField(default=False)
-    gender = models.CharField(max_length=25)
-    qualification = models.CharField(max_length=50)
+    gender = models.CharField(max_length=25,null=True)
+    qualification = models.CharField(max_length=50,null=True)
+    bio = models.CharField(max_length=100,null=True)
+    age = models.IntegerField(null=True)
+    phone = models.IntegerField(null=True)
+    profilepic = models.ImageField(upload_to='image',null=True,blank=True,default='media/avatar7.png')
 
     class Meta:
         db_table = 'users'
@@ -23,12 +27,3 @@ class User_Technology(models.Model):
     class Meta:
         db_table = 'user_technology'
 
-
-class ContactUs(models.Model):
-    name = models.CharField(max_length=25)
-    email = models.EmailField(max_length=50)
-    subject = models.CharField(max_length=30)
-    message = models.CharField(max_length=200)
-
-    class Meta:
-        db_table = 'contactUs'

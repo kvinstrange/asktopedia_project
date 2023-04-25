@@ -51,13 +51,6 @@ class UserProfileForm(forms.ModelForm):
     )
     class Meta():
         model = User
-        fields = ('username','first_name','last_name','email','gender','qualification')
-
-
-
-
-class ContactUsForm(forms.ModelForm):
-    class Meta(UserCreationForm.Meta):
-        model = ContactUs
-        fields = '__all__'
+        fields = ('username','first_name','last_name','email','gender','qualification','bio','profilepic')
+        widgets = {"file": forms.ClearableFileInput()}
 

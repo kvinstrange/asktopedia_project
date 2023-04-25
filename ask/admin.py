@@ -6,6 +6,7 @@ from .models import *
 admin.site.register(TechnologyLabel)
 admin.site.register(Question)
 admin.site.register(Answers)
+admin.site.register(User_Like)
 # admin.site.register(Meetup)
 # admin.site.register(Meetup_Participants)
 admin.site.register(Badges)
