@@ -45,8 +45,11 @@
                 <div class="account-settings">
                     <div class="user-profile">
                         <div class="user-avatar">
-                            <img style="height: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
-                            
+                          {% if user.profilepic %}
+                            <img style="height: 200px; width: 200px;" src="{{user.profilepic.url}}" alt="Maxwell Admin">
+                          {% else %}
+                            <img style="height: 200px; width: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                          {% endif %}
                         </div>
                         <br>
                         <h5 class="user-name">
@@ -59,7 +62,11 @@
                     <br>
                     <h5>Badges</h5>
                     {% for badge in badges %}
-                      <p class="text-warning">{{ badge.badgetitle }}</p>
+                      <p class="text-warning">
+                        <a href="{% url 'badges_list' %}" style="color: #FFC100;">
+                        {{ badge.badgetitle }}
+                        </a>
+                      </p>
                     {% empty %}
                       <p>No badges earned yet.</p>
                       

@@ -13,7 +13,7 @@ class User(AbstractUser):
     bio = models.CharField(max_length=100,null=True)
     age = models.IntegerField(null=True)
     phone = models.IntegerField(null=True)
-    profilepic = models.ImageField(upload_to='image',null=True,blank=True,default='media/avatar7.png')
+    profilepic = models.ImageField(upload_to='image/',null=True,blank=True,default='media/avatar7.png')
 
     class Meta:
         db_table = 'users'

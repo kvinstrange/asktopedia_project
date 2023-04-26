@@ -44,9 +44,12 @@
                 <div class="account-settings">
                     <div class="user-profile">
                         <div class="user-avatar">
-                            <img style="height: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
-                            
-                        </div>
+                            {% if user.profilepic %}
+                              <img style="height: 200px; width: 200px;" src="{{user.profilepic.url}}" alt="Maxwell Admin">
+                            {% else %}
+                              <img style="height: 200px; width: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                            {% endif %}
+                          </div>
                         <br>
                         <h5 class="user-name">
                           <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,7 +61,11 @@
                     <br>
                     <h5>Badges</h5>
                     {% for badge in badges %}
-                      <p class="text-warning">{{ badge.badgetitle }}</p>
+                    <p class="text-warning">
+                        <a href="{% url 'badges_list' %}" style="color: #FFC100;">
+                        {{ badge.badgetitle }}
+                        </a>
+                      </p>
                     {% empty %}
                       <p>No badges earned yet.</p>
                     {% endfor %}
@@ -133,13 +140,13 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                        
                     </div>
-                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="website">Profile Picture</label>
                             <br>
                             {{form.profilepic}}
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-12">

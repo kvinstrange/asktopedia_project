@@ -132,19 +132,6 @@ class QuestionAnswerView(CreateView):
 
 
 
-class AnswerView(View):
-    def get(self, request, *args, **kwargs):
-         view = QuestionDetailView.as_view()
-         return view(request, *args, **kwargs) 
-
-    def post(self, request, *args, **kwargs) :
-         view = QuestionAnswerView.as_view()
-         return view(request, *args, **kwargs) 
-
-
-
-
-
 class AnswerUpdateView(UpdateView):
     model = Answers
     form_class = QuestionAnswerForm
@@ -188,7 +175,27 @@ def like(request):
     answeredUser = len(answerDetail)
     print("Total answers................",answeredUser)
     badges = Badges.objects.all().values()
-    
+     
+    if answeredUser >= 2:
+            badge_id = badges[1].get('id') 
+            print("Bronze.........",badge_id)
+            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
+            print("User.........",user_badges)
+            user_badges.save()
+
+    if answeredUser >= 4:
+            badge_id = badges[0].get('id') 
+            print("Silver.........",badge_id)
+            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
+            print(user_badges)
+            user_badges.save()
+
+    if answeredUser >= 6:
+            badge_id = badges[2].get('id') 
+            print("Gold.........",badge_id)
+            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
+            print(user_badges)
+            user_badges.save()
    
     id = request.GET.get('id')
     print("answer id.....",id)
@@ -203,27 +210,7 @@ def like(request):
         messages.warning(request, "You have already liked this answer.")
         return redirect('detail_question', qid)
 
-    if prvlikecount>0:
-        if answeredUser >= 2:
-            badge_id = badges[1].get('id') 
-            print("Bronze.........",badge_id)
-            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
-            print("User.........",user_badges)
-            user_badges.save()
-
-        if answeredUser >= 4:
-            badge_id = badges[0].get('id') 
-            print("Silver.........",badge_id)
-            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
-            print(user_badges)
-            user_badges.save()
-
-        if answeredUser >= 6:
-            badge_id = badges[2].get('id') 
-            print("Gold.........",badge_id)
-            user_badges = User_Badges(user_id=uid, badge_id=badge_id)
-            print(user_badges)
-            user_badges.save()
+   
 
     print("OLd likes------",prvlikecount)
     updatedCount = prvlikecount+1

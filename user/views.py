@@ -71,6 +71,8 @@ class DashBoardView(ListView):
 class UserDashBoardView(ListView):
     # model = User
     template_name = 'user/user_dashboard.html'
+    model = Question
+    context_object_name = 'title'
     
     def get(self, request, *args, **kwargs):
         question = Question.objects.all().values()
@@ -78,6 +80,10 @@ class UserDashBoardView(ListView):
         direction = self.request.GET.get('direction', 'asc')
         print(".....",sort_by)
         print(".....",direction)
+        search_input =self.request.GET.get('search-area') or ''
+        if request.method == "GET":
+            question = Question.objects.filter(title__startswith=search_input).values()
+            
         if direction == 'asc':
             question = question.order_by(sort_by)
         elif direction == 'desc':
@@ -85,9 +91,11 @@ class UserDashBoardView(ListView):
         return render(request, 'user/user_dashboard.html',{
             'questions':question,
         })
+        
     
     def get_queryset(self):
         return super().get_queryset()
+        
   
   
 
