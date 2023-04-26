@@ -10,10 +10,12 @@ from django.views import View
 from django.views.generic import ListView,TemplateView,DetailView,UpdateView
 from ask.models import Question
 from django.contrib.auth import get_user_model
-from ask.models import User_Badges, Badges
+from ask.models import User_Badges, Badges,Answers,Question
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordResetForm
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -49,7 +51,7 @@ class UserLogoutView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         logout(request)
-        return redirect(reverse_lazy('dashboard'))
+        return redirect(reverse_lazy('home'))
     
 
 
@@ -67,7 +69,7 @@ class DashBoardView(ListView):
         return super().get_queryset()
 
 
-
+@method_decorator(login_required(login_url='/user/login'), name='dispatch')
 class UserDashBoardView(ListView):
     # model = User
     template_name = 'user/user_dashboard.html'
@@ -82,7 +84,7 @@ class UserDashBoardView(ListView):
         print(".....",direction)
         search_input =self.request.GET.get('search-area') or ''
         if request.method == "GET":
-            question = Question.objects.filter(title__startswith=search_input).values()
+            question = Question.objects.filter(title__icontains=search_input).values()
             
         if direction == 'asc':
             question = question.order_by(sort_by)
@@ -106,6 +108,16 @@ class UserProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = self.object
+        uid = user.id
+        answerDetail = Answers.objects.filter(user_id=uid).values()
+        askedQuestions = Question.objects.filter(user_id=uid).count()
+        userQuestions = Question.objects.filter(user_id=uid).values()
+        answeredUser = len(answerDetail)
+        context['asked_questions'] = askedQuestions
+        context['answered_user'] = answeredUser
+        context['user_questions'] = userQuestions
+        context['user_answers'] = answerDetail
         user_badges = User_Badges.objects.filter(user=self.object)
         badges = Badges.objects.filter(user_badges__in=user_badges).distinct()
         context['badges'] = badges

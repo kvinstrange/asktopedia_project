@@ -12699,7 +12699,7 @@ input[type="button"].btn-block {
   color: #495057;
   text-align: center;
   white-space: nowrap;
-  background-color: #e9ecef;
+  background-color: #b1d8ff;
   border: 1px solid #ced4da;
   border-radius: 2px;
 }
@@ -22633,7 +22633,7 @@ code {
 .input-group-prepend .input-group-text {
   border-color: #CED4DA;
   padding: 0.875rem 0.75rem;
-  color: #c9c8c8;
+  color: #2f20c7;
 }
 
 .form-control, .asColorPicker-input, .dataTables_wrapper select, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text],

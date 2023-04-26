@@ -21,7 +21,7 @@ from ask.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
+    path('',home,name='home'),
     path('user/',include('user.urls')),
     path('ask/',include('ask.urls')),
 ]

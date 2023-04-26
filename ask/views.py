@@ -2,24 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView,TemplateView,ListView,DetailView,DeleteView,UpdateView
 from .forms import *
-from django.views.generic import ListView,DetailView
-from django.views.generic import DeleteView,UpdateView
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from .models import Answers
-from .models import Question
+from .models import Answers,Question
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseBadRequest
 from django.contrib import messages
 from django import template
 from datetime import datetime
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 # Create your views here.
@@ -58,7 +55,6 @@ class QuestionListView(ListView):
     
     
 
-
 class QuestionUpdateView(UpdateView):
     model = Question
     form_class = AskQuestionForm
@@ -87,15 +83,7 @@ class QuestionDetailView(DetailView):
         answer = Answers.objects.filter(question_id=self.kwargs['pk']).values()
         return render(request, self.template_name, {'question_detail': self.get_object(),'question':question,'answers':answer})
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     question = Question.objects.filter(id=self.kwargs['pk']).values()
-    #     answer = Answers.objects.filter(question_id=self.kwargs['pk']).values()
-    #     context['question'] = question
-    #     context['answers'] = answer
-    #     # context['answer_form'] = QuestionAnswerForm(initial={'question': question.id})
-    #     return context  
-    
+   
 
   
 
@@ -132,11 +120,19 @@ class QuestionAnswerView(CreateView):
 
 
 
-class AnswerUpdateView(UpdateView):
+class AnswerUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Answers
     form_class = QuestionAnswerForm
     template_name = 'ask/answer_question.html'
     success_url = '/user/user/dashboard/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+        
+    def test_func(self):
+        answer = self.get_object()
+        return self.request.user == answer.user
 
 
 
@@ -151,10 +147,19 @@ class AnswerDeleteView(DeleteView):
 
 
 @method_decorator(login_required(login_url='/user/login'), name='dispatch')
-class TechnologyListView(ListView):
+class TechnologyListView(TemplateView):
     model = TechnologyLabel
     template_name = 'ask/technology_list.html'
-    context_object_name = 'technology_list'
+    context_object_name = 'label'
+
+    def get(self, request, *args, **kwargs):
+        tag = TechnologyLabel.objects.all().values()
+        search_input =self.request.GET.get('search-area') or ''
+        if request.method == "GET":
+            tag = TechnologyLabel.objects.filter(label__icontains=search_input).values()
+         
+        return render(request, 'ask/technology_list.html',{'tags':tag})
+    
 
 
 
@@ -171,6 +176,9 @@ def like(request):
     print("Logged in user----------",user)
     uid = user.id
     answerDetail = Answers.objects.filter(user_id =user.id).values()
+    questdetail = Question.objects.filter(user_id =user.id).values()
+    askedQuestions = len(questdetail)
+    print("Total questions................",askedQuestions)
     # print("Answers of user-----------",answerDetail2)
     answeredUser = len(answerDetail)
     print("Total answers................",answeredUser)

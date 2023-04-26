@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 
 class TechnologyLabel(models.Model):
     labeltitle = models.CharField(max_length=25,null=True)
-    label = models.CharField(max_length=100)
+    label = models.CharField(max_length=500)
 
     class Meta:
         db_table = 'technology_label'

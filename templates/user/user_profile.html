@@ -22,7 +22,6 @@
             <div class="col-12 col-xl-4">
              <div class="justify-content-end d-flex">
               <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-              <!-- <a href="#" class="btn btn-primary">Edit Profile</a> -->
 
               </div>
              </div>
@@ -142,11 +141,38 @@
                   </div>
                   <hr>
                   
+                    
                 <div class="row">
                   <div class="col-sm-12">
-                    <a class="btn btn-info " href="{% url 'user_update' user.id %}">Edit</a>
+                    <a class="btn btn-info " href="{% url 'user_update' user.id %}">Edit Profile</a>
                   </div>
                 </div>
+                <br>
+                &emsp13;
+                <h4 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
+                  Question-Answers
+              </h4>
+              <br>
+                <h6>Questions : {{ asked_questions }}</h6>
+                <hr>
+                      {% for question in user_questions %}
+                          <div>
+                            {{ question.title }} :- 
+                            <div class="col-sm-9 text-secondary">
+                            {{question.description}}
+                            </div>
+                            <hr>
+                          </div>
+                      {% endfor %}
+                  <br>
+                <h6>Answers : {{ answered_user }}</h6>
+                <hr>
+                      {% for answer in user_answers %}
+                      <div class="col-sm-9 text">
+                        {{ answer.answer }}
+                      </div>
+                      <hr>
+                      {% endfor %}
               </div>
             </div>
         </div>
