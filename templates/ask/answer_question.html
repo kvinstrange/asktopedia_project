@@ -35,62 +35,6 @@
 
 
 
-          <!-- Question Details -->
-          <!-- <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <div class="table-responsive">
-                    <table class="table" >
-                      <thead>
-                        <tr>
-                          <h4>{{question.description}}</h4>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for a in answers %}
-                        <tr>
-                          <td>
-                            
-                            <h5>Answer:</h5>
-                            <h5>{{a.answer}}</h5>
-                            <br>
-                            
-                            <br> 
-                           
-                                 {% if user.is_authenticated %}
-                                    <a href='/ask/likes/?id={{a.id}}'><i class="fa fa-thumbs-up" style="font-size:22px"></i></a>
-                                  {% else %}
-                                    <a onclick="alert('In order to like the answer, you must be logged in!')" href='http://127.0.0.1:8000/user/login/'><i class="fa fa-thumbs-up" style="font-size:20px"></i></a>
-                                  {% endif %}
-                                  &nbsp;
-                                 {{a.likeCount}}
-
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% if user.is_authenticated %}
-                                    <a href='/ask/dislikes/?id={{a.id}}'><i class="fa fa-thumbs-down" style="font-size:22px"></i></a>
-                                  {% else %}
-                                    <a onclick="alert('In order to dislike the answer, you must be logged in!')" href='http://127.0.0.1:8000/user/login/'><i class="fa fa-thumbs-down" style="font-size:22px"></i></a>
-                                  {% endif %}
-                                  &nbsp;
-                                 {{a.dislikeCount}}
-
-                          </td>
-                        </tr>
-                       <tr>
-                        
-                       </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-
 
 
 

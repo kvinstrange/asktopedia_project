@@ -19,6 +19,8 @@ class UserRegisterForm(UserCreationForm):
         label="Password",
         strip=False,
         widget=forms.PasswordInput,
+        help_text="Password should be 8 characters long."
+
     )
     password2 = forms.CharField(
         label="Repeat Password",

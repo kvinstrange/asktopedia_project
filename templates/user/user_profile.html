@@ -170,6 +170,15 @@
                       {% for answer in user_answers %}
                       <div class="col-sm-9 text">
                         {{ answer.answer }}
+                        <br><br>
+                        <a  href="{% url 'update_answer' answer.id %}">
+                              <input  type="button" class="btn btn-outline-secondary btn-text" fdprocessedid="1jxmu" value="Edit">   
+                            </a>
+                          
+                           
+                            <a href="{% url 'delete_answer' answer.id %}"> 
+                              <input type="button" class="btn btn-outline-danger btn-fw" fdprocessedid="jbj2nq" value ="Delete">
+                            </a>
                       </div>
                       <hr>
                       {% endfor %}
