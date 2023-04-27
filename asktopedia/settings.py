@@ -142,6 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # Auth settings
 AUTH_USER_MODEL = 'user.User'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'http://localhost:8000/user/login/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .models import *
 from .forms import *
-from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.views import LoginView,LogoutView,PasswordResetView
 from django.contrib.auth import login,logout
 from django import forms
 from django.views import View
@@ -140,3 +140,21 @@ class UserUpdateView(UpdateView):
         context['badges'] = badges
         return context
 
+
+
+def password_reset(request):
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            form.save(
+                domain_override='localhost:8000',
+                subject_template_name='registration/password_reset_subject.txt',
+                email_template_name='registration/password_reset_email.html',
+                use_https=request.is_secure(),
+                from_email='kvania74@gmail.com',
+                request=request,
+            )
+            messages.success(request, 'An email has been sent with instructions to reset your password.')
+    else:
+        form = PasswordResetForm()
+    return render(request, 'registration/password_reset_form.html', {'form': form})
