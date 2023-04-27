@@ -58,8 +58,8 @@ class QuestionListView(ListView):
 class QuestionUpdateView(UpdateView):
     model = Question
     form_class = AskQuestionForm
-    template_name = 'ask/question_create.html'
-    success_url = '/ask/list_question/'
+    template_name = 'ask/question_ask.html'
+    success_url = '/user/user/dashboard'
 
 
 
@@ -243,7 +243,6 @@ def dislike(request):
 
     user_likes = User_Like.objects.filter(user=user, answer=new_like)
     if user_likes.exists():
-        # User has already liked this answer
         messages.warning(request, "You have already disliked this answer.")
         return redirect('detail_question', qid)
     

@@ -13,7 +13,7 @@
         <div class="col-md-12 grid-margin">
           <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 class="font-weight-bold" style="color: rgb(25, 25, 120);">Welcome, {{user.get_username}}</h3>
+              <h2 class="font-weight-bold" style="color: rgb(25, 25, 120);">Customize your profile</h2>
 
               <style>
                  @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
@@ -69,6 +69,7 @@
                     {% empty %}
                       <p>No badges earned yet.</p>
                     {% endfor %}
+                    <br>
                     <div class="about">
                         <h5>About</h5>
                         <p>{{user.bio}}</p>

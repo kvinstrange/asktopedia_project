@@ -13,7 +13,7 @@
         <div class="col-md-12 grid-margin">
           <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 class="font-weight-bold" style="color: rgb(25, 25, 120);">Welcome, {{user.get_username}}</h3>
+              <h2 class="font-weight-bold" style="color: rgb(25, 25, 120);">Welcome, {{user.get_username}}.</h2>
 
               <style>
                  @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
@@ -22,7 +22,7 @@
             <div class="col-12 col-xl-4">
              <div class="justify-content-end d-flex">
               <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-
+                <a class="btn btn-info " href="{% url 'user_update' user.id %}">Edit Profile</a>
               </div>
              </div>
             </div>
@@ -70,6 +70,7 @@
                       <p>No badges earned yet.</p>
                       
                     {% endfor %}
+                    <br>
                     <div class="about">
                         <h5>About</h5>
                         <p>{{user.bio}}</p>
@@ -82,9 +83,9 @@
         <div class="col-md-8">
             <div class="card mb-3">
               <div class="card-body">
-                <h4 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
+                <h3 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
                     Personal Details
-                </h4>
+                </h3>
                 <br>
                 <div class="row">
                   <div class="col-sm-3">
@@ -144,41 +145,58 @@
                     
                 <div class="row">
                   <div class="col-sm-12">
-                    <a class="btn btn-info " href="{% url 'user_update' user.id %}">Edit Profile</a>
+                    
+                    <!-- &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
+                    &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14; -->
                   </div>
                 </div>
                 <br>
                 &emsp13;
-                <h4 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
+                <h3 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
                   Question-Answers
-              </h4>
+              </h3>
               <br>
-                <h6>Questions : {{ asked_questions }}</h6>
+                <h4>Questions : {{ asked_questions }}</h4>
                 <hr>
                       {% for question in user_questions %}
                           <div>
                             {{ question.title }} :- 
                             <div class="col-sm-9 text-secondary">
                             {{question.description}}
+                            
                             </div>
+                            <br>
+                            <a  href="{% url 'update_question' question.id %}">
+                            <button style="width: 80px;" type="button" class="btn btn-outline-secondary btn-sm" fdprocessedid="bscfc2">Edit</button>
+                          </a>
+
+
+                            <a href="{% url 'delete_question' question.id %}"> 
+                            <button style="width: 80px;" type="button" class="btn btn-outline-danger btn-sm" fdprocessedid="bscfc2">Delete</button>
+                            </a>
                             <hr>
                           </div>
                       {% endfor %}
                   <br>
-                <h6>Answers : {{ answered_user }}</h6>
+                <h4>Answers : {{ answered_user }}</h4>
                 <hr>
                       {% for answer in user_answers %}
                       <div class="col-sm-9 text">
                         {{ answer.answer }}
                         <br><br>
                         <a  href="{% url 'update_answer' answer.id %}">
-                              <input  type="button" class="btn btn-outline-secondary btn-text" fdprocessedid="1jxmu" value="Edit">   
-                            </a>
+                          <button style="width: 80px;" type="button" class="btn btn-outline-secondary btn-sm" fdprocessedid="bscfc2">Edit</button>
+                        </a>
                           
                            
-                            <a href="{% url 'delete_answer' answer.id %}"> 
-                              <input type="button" class="btn btn-outline-danger btn-fw" fdprocessedid="jbj2nq" value ="Delete">
-                            </a>
+                        <a href="{% url 'delete_answer' answer.id %}"> 
+                          <button style="width: 80px;" type="button" class="btn btn-outline-danger btn-sm" fdprocessedid="bscfc2">Delete</button>
+                        </a>
                       </div>
                       <hr>
                       {% endfor %}
