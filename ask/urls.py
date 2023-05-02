@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     path('ask_question/',AskQuestionView.as_view(),name='ask_question'),
-    path('list_question/',QuestionListView.as_view(),name='question_list'),
+    # path('list_question/',QuestionListView.as_view(),name='question_list'),
     path('delete_question/<int:pk>',QuestionDeleteView.as_view(),name='delete_question'),
     path('update_question/<int:pk>',QuestionUpdateView.as_view(),name='update_question'),
     path('detail_question/<int:pk>',QuestionDetailView.as_view(),name='detail_question'),

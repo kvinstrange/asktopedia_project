@@ -165,7 +165,7 @@
                 <hr>
                       {% for question in user_questions %}
                           <div>
-                            {{ question.title }} :- 
+                            {{ forloop.counter }}) {{ question.title }} :- 
                             <div class="col-sm-9 text-secondary">
                             {{question.description}}
                             
@@ -173,8 +173,7 @@
                             <br>
                             <a  href="{% url 'update_question' question.id %}">
                             <button style="width: 80px;" type="button" class="btn btn-outline-secondary btn-sm" fdprocessedid="bscfc2">Edit</button>
-                          </a>
-
+                            </a>
 
                             <a href="{% url 'delete_question' question.id %}"> 
                             <button style="width: 80px;" type="button" class="btn btn-outline-danger btn-sm" fdprocessedid="bscfc2">Delete</button>
@@ -187,7 +186,7 @@
                 <hr>
                       {% for answer in user_answers %}
                       <div class="col-sm-9 text">
-                        {{ answer.answer }}
+                        {{ forloop.counter }}) {{ answer.answer }}
                         <br><br>
                         <a  href="{% url 'update_answer' answer.id %}">
                           <button style="width: 80px;" type="button" class="btn btn-outline-secondary btn-sm" fdprocessedid="bscfc2">Edit</button>

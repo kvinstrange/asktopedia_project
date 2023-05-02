@@ -44,13 +44,13 @@ class AskQuestionView(CreateView):
     
 
 
-class QuestionListView(ListView):
-    model = Question
-    template_name = 'ask/question_list.html'
-    context_object_name = 'question_list'
+# class QuestionListView(ListView):
+#     model = Question
+#     template_name = 'ask/question_list.html'
+#     context_object_name = 'question_list'
     
-    def get_queryset(self):
-        return super().get_queryset()    
+#     def get_queryset(self):
+#         return super().get_queryset()    
     
     
     
@@ -150,13 +150,13 @@ class AnswerDeleteView(DeleteView):
 class TechnologyListView(TemplateView):
     model = TechnologyLabel
     template_name = 'ask/technology_list.html'
-    context_object_name = 'label'
+    context_object_name = 'labeltitle'
 
     def get(self, request, *args, **kwargs):
         tag = TechnologyLabel.objects.all().values()
         search_input =self.request.GET.get('search-area') or ''
         if request.method == "GET":
-            tag = TechnologyLabel.objects.filter(label__icontains=search_input).values()
+            tag = TechnologyLabel.objects.filter(labeltitle__icontains=search_input).values()
          
         return render(request, 'ask/technology_list.html',{'tags':tag})
     
